@@ -5,12 +5,12 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     private Vector2 direction = Vector2.zero;
-
-
+    private Rigidbody2D rb;
+    public float speed = 5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -41,6 +41,13 @@ public class playerController : MonoBehaviour
         {
             direction.y = 0;
         }
+
+        direction = direction.normalized;
+    }
+
+    private void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + (direction * speed * Time.fixedDeltaTime));
     }
 
     private void OnDrawGizmos()
