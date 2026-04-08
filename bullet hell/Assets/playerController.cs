@@ -50,6 +50,11 @@ public class playerController : MonoBehaviour
         rb.MovePosition(rb.position + (direction * speed * Time.fixedDeltaTime));
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(collision.gameObject);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;
