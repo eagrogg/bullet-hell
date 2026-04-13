@@ -7,6 +7,8 @@ public class playerController : MonoBehaviour
     private Vector2 direction = Vector2.zero;
     private Rigidbody2D rb;
     public float speed = 5f;
+    public int health = 3;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -50,8 +52,9 @@ public class playerController : MonoBehaviour
         rb.MovePosition(rb.position + (direction * speed * Time.fixedDeltaTime));
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        health -= collision.GetComponent<bullet>().damage;
         Destroy(collision.gameObject);
     }
 
